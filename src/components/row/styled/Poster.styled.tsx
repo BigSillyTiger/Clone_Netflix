@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const StyledPost = styled.img`
+interface styleProps {
+    isLarge: boolean;
+}
+
+const StyledPost = styled.img<styleProps>`
     obeject-fit: contain;
     width: 100%;
     margin-right: 10px;
@@ -10,6 +14,12 @@ const StyledPost = styled.img`
     :hover {
         transform: scale(1.08);
     }
+
+    ${({ isLarge }) =>
+        isLarge &&
+        `
+        max-height: 250px;
+    `}
 `;
 
 export default StyledPost;

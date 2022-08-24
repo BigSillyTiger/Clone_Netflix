@@ -1,17 +1,20 @@
 import React from "react";
 
 import "./App.css";
-import requests from "./request";
+import requests from "./config/request";
 import Row from "./components/row/Row";
+import Banner from "./components/banner/Banner";
+import Nav from "./components/nav/Nav";
+import StyledApp from "./components/global/App.style";
 
 const App = () => {
     return (
-        <div className="App">
-            <Row
-                title="NETFLX ORIGINALS"
-                fetchUrl={requests.fetchNetflixOriginals}
-                isLargeRow
-            />
+        <StyledApp>
+            {/* Nav */}
+            <Nav />
+            {/* Banner */}
+            <Banner />
+
             <Row title="Trending Now" fetchUrl={requests.fetchTrending} />
             <Row title="Top Rated" fetchUrl={requests.fetchTopRated} />
             <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} />
@@ -22,7 +25,7 @@ const App = () => {
                 fetchUrl={requests.fetchRomanceMovies}
             />
             <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} />
-        </div>
+        </StyledApp>
     );
 };
 

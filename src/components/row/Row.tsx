@@ -1,33 +1,17 @@
 import React, { FC, useState, useEffect } from "react";
-import axios from "../../axios";
-import { img_url } from "../../request";
+import axios from "../../config/axios";
+import { img_url } from "../../config/request";
 
-import StyledPost from "./Poster.styled";
-import StyledPostContainer from "./PContainer.styled";
+import StyledPost from "./styled/Poster.styled";
+import StyledPostContainer from "./styled/PContainer.styled";
+import StyledRow from "./styled/row.styled";
+
+import { type_movie } from "../../config/ts_types";
 
 type props_row = {
     title: string;
     fetchUrl: string;
     isLargeRow?: boolean;
-};
-
-type type_movie = {
-    backdrop_path: string;
-    first_air_date: string;
-    genre_ids: number[];
-    id: number;
-    name: string;
-    origin_country: string[];
-    original_language: string;
-    original_name: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
 };
 
 const Row: FC<props_row> = ({ title, fetchUrl, isLargeRow }) => {
@@ -47,7 +31,7 @@ const Row: FC<props_row> = ({ title, fetchUrl, isLargeRow }) => {
     //console.table(movies);
 
     return (
-        <div>
+        <StyledRow>
             <h2>{title}</h2>
             <StyledPostContainer>
                 {movies.map((movie) => {
@@ -60,11 +44,12 @@ const Row: FC<props_row> = ({ title, fetchUrl, isLargeRow }) => {
                                     : movie.backdrop_path
                             }`}
                             alt={movie.name}
+                            isLarge={Boolean(isLargeRow)}
                         />
                     );
                 })}
             </StyledPostContainer>
-        </div>
+        </StyledRow>
     );
 };
 
